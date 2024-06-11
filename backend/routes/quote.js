@@ -12,11 +12,9 @@ router.get('/random', getQuote)
 //get all quotes for the username
 router.get('/:username', getQuotes)
 
-router.use(requireAuth);
-
 
 // create a new quote
-router.post('/', createQuotes)
+router.post('/',requireAuth, createQuotes)
 
 module.exports = router;
 

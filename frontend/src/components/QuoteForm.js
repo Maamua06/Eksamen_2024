@@ -15,7 +15,7 @@ const QuoteForm = () => {
 
 
     const handleSubmit = async (e) => {
-        
+        e.preventDefault();
 
         if(!user) {
             setError('You must be logged in')
