@@ -48,8 +48,44 @@ const createQuotes = async (req, res) => {
     }
 };
 
+// Delete quotes
+const deleteQuotes = async (req, res) => {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json(({ error: 'No such idea' }));
+    }
+
+    const quote = await Quote.findOneAndDelete({ _id: id });
+
+    if(!quote) {
+        return res.status(400).json({ error: 'No such idea' });
+    }
+
+    res.status(200).json(quote);
+};
+
+// Update quotes
+const updateQuotes = async (req, res) => {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({ error: 'No Quotes to update'});
+    }
+
+    const quote = await Quote.findOneAndUpdate({ _id: id }, {...req.body });
+
+    if(!quote) {
+        return res.status(400).json({ error: 'No Quotes to update'});
+    }
+
+    res.status(200).json(quote);
+};
+
 module.exports = {
     getQuotes,
     getQuote,
-    createQuotes
+    createQuotes,
+    deleteQuotes,
+    updateQuotes
 }

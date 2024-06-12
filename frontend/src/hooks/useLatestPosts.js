@@ -4,11 +4,10 @@ import { useAuthContext } from "./useAuthContext";
 const apiUrl = process.env.REACT_APP_API_URL;
 
 export const useLatestPosts = () => {
-    const { user } = useAuthContext(); 
+    const { user } = useAuthContext();
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [quotes, setQuotes] = useState([]);
-    const [shouldFetch, setShouldFetch] = useState(true); // Boolean flag to control fetching
 
     const latestPosts = async () => {
         setIsLoading(true);
@@ -30,40 +29,28 @@ export const useLatestPosts = () => {
                     console.error("API response is not an array:", json);
                 }
                 setIsLoading(false);
-                console.log("Quotes:", quotesArray);
+                //console.log("Quotes:", quotesArray);
             }
         } else {
             console.log('user is null');
             setError("User object is null.");
             setIsLoading(false);
         }
-
-        // Allow fetching again after 1 minute
-        setTimeout(() => {
-            setShouldFetch(true);
-        }, 60000); // 1 minute in milliseconds
     };
 
     useEffect(() => {
-        // Fetch only if shouldFetch flag is true
-        if (shouldFetch) {
-            latestPosts();
-            setShouldFetch(false); // Prevent further fetching until next timeout
-        }
-    }, [shouldFetch]); // Fetch whenever shouldFetch changes
-
-    useEffect(() => {
-        // Fetch once immediately when the component mounts
+        // Fetch immediately when the component mounts
         latestPosts();
 
-        // Fetch again every 1 minute
+        // Set up interval to fetch every 30 seconds
         const interval = setInterval(() => {
-            setShouldFetch(true);
-        }, 60000); // 1 minute in milliseconds
+            latestPosts();
+        }, 10000); // 30 seconds in milliseconds
 
-        // Cleanup the interval to avoid memory leaks
+        // Cleanup the interval on component unmount
         return () => clearInterval(interval);
-    }, []); // Fetch once on mount
+    }, [user]); // Depend on user so it re-fetches if user changes
 
     return { quotes, isLoading, error };
 };
+

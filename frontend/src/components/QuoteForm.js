@@ -49,7 +49,7 @@ const QuoteForm = () => {
 
     return ( 
         <form className="FormBox" onSubmit={handleSubmit}>
-        <h3>Add a New Quote</h3>
+        <h3>Add a New Idea</h3>
   
   
         <label>body:</label>
@@ -67,7 +67,7 @@ const QuoteForm = () => {
           value={author}
           className={emptyFields === 'author' ? 'error' : 'input'}
         />
-        <button>Add Blog</button>
+        <button>Add Idea</button>
         {error && <div className="error">{error}</div>}
       </form>
      );

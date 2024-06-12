@@ -42,10 +42,10 @@ const Navbar = () => {
 
     return ( 
         <Nav>
-        <NavBrand>Quotes { user && <span>- {user.username}</span>}</NavBrand>
+        <NavBrand>Ideas { user && <span>- {user.username}</span>}</NavBrand>
         <NavMenu>
           <NavItem>
-          <NavLink to="/">Quotes</NavLink>
+          <NavLink to="/">Ideas</NavLink>
           </NavItem>
           {user &&
           <>
@@ -53,7 +53,7 @@ const Navbar = () => {
               <NavLink to="/sign-in" onClick={logout}>Logout</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink to="/home/:user">Your Quotes</NavLink>
+              <NavLink to="/home/:user">Your Ideas</NavLink>
             </NavItem>
           </>
           }
