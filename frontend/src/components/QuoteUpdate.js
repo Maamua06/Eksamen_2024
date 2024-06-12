@@ -1,13 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUpdateQuotes } from '../hooks/useUpdateQuote';
 
-const UpdateQuoteForm = ({ quote }) => {
+const UpdateQuoteForm = ({ quote, setEditingQuote }) => {
     const { handleClick: handleUpdate, data: updateData } = useUpdateQuotes();
 
     const [body, setBody] = useState(quote.body);
     const [author, setAuthor] = useState(quote.author);
     const [error, setError] = useState(null);
     const [emptyFields, setEmptyFields] = useState([]);
+
+    useEffect(() => {
+        if(updateData) {
+            setEditingQuote(null)
+        }
+    }, [updateData])
 
 
     const handleSubmit = async (e) => {
@@ -17,11 +23,10 @@ const UpdateQuoteForm = ({ quote }) => {
             setError('Quote ID is missing.');
             return;
         }
-        
-       
-        const response = await handleUpdate(quote._id);
+    
+        // Pass the updated body and author to the handleUpdate function
+        const response = await handleUpdate(quote._id, { body, author });
         console.log('response', response);
-        
     
         if (!response) {
             setError('No response from update function.');
@@ -36,6 +41,7 @@ const UpdateQuoteForm = ({ quote }) => {
             setBody('');
             setEmptyFields([])
             setError(null);
+            setEditingQuote(null); // Add this line
         }
     }
     

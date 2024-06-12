@@ -60,7 +60,7 @@ const Home = () => {
     return ( 
         <div className="home">
             {editingQuote ? (
-                <UpdateQuoteForm quote={editingQuote} />
+                <UpdateQuoteForm quote={editingQuote} setEditingQuote={setEditingQuote} />
             ) : (
                 <QuoteForm />
             )}

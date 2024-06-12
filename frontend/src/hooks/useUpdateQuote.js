@@ -11,7 +11,7 @@ export const useUpdateQuotes = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const handleClick = async (id) => {
+    const handleClick = async (id, updatedQuote) => {
         setIsLoading(true);
         let data;
         try {
@@ -21,9 +21,7 @@ export const useUpdateQuotes = () => {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${user.token}`
                 },
-                body: JSON.stringify({
-                    author, body
-                }),
+                body: JSON.stringify(updatedQuote),
             });
     
             if (!response.ok) {
@@ -41,6 +39,7 @@ export const useUpdateQuotes = () => {
         
         return data; // return the data
     };
+    
     
     const returnval={ handleClick, data, isLoading, error, setAuthor, setBody }
     //console.log("step 1\n",returnval);
