@@ -50,16 +50,7 @@ const QuoteForm = () => {
     return ( 
         <form className="FormBox" onSubmit={handleSubmit}>
         <h3>Add a New Idea</h3>
-  
-  
-        <label>body:</label>
-        <input 
-          type="text"
-          onChange={(e) => setBody(e.target.value)}
-          value={body}
-          className={emptyFields === 'body' ? 'error' : 'input'}
-        />
-  
+
         <label>Author:</label>
         <input 
           type="text"
@@ -67,6 +58,15 @@ const QuoteForm = () => {
           value={author}
           className={emptyFields === 'author' ? 'error' : 'input'}
         />
+
+        <label>body:</label>
+        <input 
+          type="text"
+          onChange={(e) => setBody(e.target.value)}
+          value={body}
+          className={emptyFields === 'body' ? 'error' : 'input'}
+        />
+
         <button>Add Idea</button>
         {error && <div className="error">{error}</div>}
       </form>
