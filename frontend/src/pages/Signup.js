@@ -33,28 +33,34 @@ const Signup = () => {
         <form className="FormBox signup" onSubmit={handleSubmit}>
             <h3 className="FormTitle">Sign Up</h3>
 
-            <label className="FormLabel">Username:</label>
+            <label className="FormLabel" htmlFor="username">Username:</label>
             <input
                 type="text"
+                id="username"
                 className="FormInput"
                 onChange={(e) => setUsername(e.target.value)}
                 value={username}
+                aria-label="Username"
             />
 
-            <label className="FormLabel">Password:</label>
+            <label className="FormLabel" htmlFor="password">Password:</label>
             <input
                 type="password"
+                id="password"
                 className="FormInput"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
+                aria-label="Password"
             />
 
-            <label className="FormLabel">Confirm Password:</label>
+            <label className="FormLabel" htmlFor="confirmPassword">Confirm Password:</label>
             <input
                 type="password"
+                id="confirmPassword"
                 className="FormInput"
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 value={confirmPassword}
+                aria-label="Confirm password"
             />
             
             {passwordError && <div className="FormError">{passwordError}</div>} {/* Display password mismatch error */}

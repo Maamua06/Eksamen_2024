@@ -34,7 +34,7 @@ const DeleteButton = styled.span`
 `;
 
 const UpdateButton = styled.span`
-  background-color: #008CBA; /* Blue background */
+  background-color: #0848DD; /* Blue background */
   color: #ffffff; /* White text */
   padding: 8px 16px; /* Padding around the button text */
   border: none; /* No border */
@@ -42,7 +42,6 @@ const UpdateButton = styled.span`
   cursor: pointer; /* Cursor style on hover */
   font-size: 16px; /* Font size */
   transition: background-color 0.3s ease; /* Smooth color transition on hover */
-  background-color: #0088cc; /* Darker blue on hover */
   margin-left: 5%;
 `;
 

@@ -22,20 +22,24 @@ const Login = () => {
         <form className="FormBox login" onSubmit={handleSubmit}>
             <h3 className="FormTitle">Log in</h3>
 
-            <label className="FormLabel">Username:</label>
+            <label className="FormLabel" htmlFor="username">Username:</label>
             <input
                 type='username'
+                id="username"
                 className="FormInput"
                 onChange={(e) => setUsername(e.target.value)}
                 value={username}
+                aria-label="Username"
             />
 
-            <label className="FormLabel">Password:</label>
+            <label className="FormLabel" htmlFor="password">Password:</label>
             <input
                 type="password"
+                id="password"
                 className="FormInput"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
+                aria-label="Password"
             />
             
             {error && <div className="FormError">{error}</div>}

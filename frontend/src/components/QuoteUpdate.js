@@ -48,24 +48,31 @@ const UpdateQuoteForm = ({ quote, setEditingQuote }) => {
 
     return (
         <form className="FormBox" onSubmit={handleSubmit}>
-            <label>
-                Body:
-                <input 
-                    type="text"
-                    onChange={(e) => setBody(e.target.value)}
-                    value={body}
-                    className={emptyFields === 'body' ? 'error' : 'input'}
-                />
-            </label>
-            <label>
+
+            <label htmlFor="author">
                 Author:
                 <input 
                     type="text"
+                    id="author"
                     onChange={(e) => setAuthor(e.target.value)}
                     value={author}
                     className={emptyFields === 'body' ? 'error' : 'input'}
+                    aria-label="Author"
                 />
             </label>
+
+            <label htmlFor="body">
+                Body:
+                <input 
+                    type="text"
+                    id="body"
+                    onChange={(e) => setBody(e.target.value)}
+                    value={body}
+                    className={emptyFields === 'body' ? 'error' : 'input'}
+                    aria-label="Body"
+                />
+            </label>
+
             <button type="submit">Update Quote</button>
             {error && <div className="error">{error}</div>}
         </form>
